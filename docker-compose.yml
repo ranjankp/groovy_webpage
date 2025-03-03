@@ -1,0 +1,9 @@
+version: '3'
+services:
+  groovy-ide:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    container_name: groovy-ide

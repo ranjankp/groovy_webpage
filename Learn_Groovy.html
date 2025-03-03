@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Groovy - File Handling Tutorial</title>
+    
+    <script>
+        function copyToClipboard() {
+            const content = document.getElementById('content-box').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                alert('Content copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+        function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+            }
+    </script>
+
+    <link rel="stylesheet" href="Groovy.css">
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()" style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none; cursor: pointer; color: inherit;">Toggle Dark Mode</button>
+
+
+    <script>
+        // Function to toggle dropdown visibility
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown-content');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Learn Groovy</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#courses" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown()">Courses</a>
+                    <div class="dropdown-content">
+                        <a href="Learn_Groovy.html">Groovy</a>
+                        <a href="learn-css.html">CSS</a>
+                        <a href="learn-javascript.html">JavaScript</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="sidebar">
+            <h3>Topics</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction to Groovy for File Handling</a></li>
+                <li><a href="working_with_xlsx.html">Working with XLSX Files</a></li>
+                <li><a href="handling_csv.html">Handling CSV Files</a></li>
+                <li><a href="processing_xml.html">Processing XML Files</a></li>
+                <li><a href="data_transformation.html">Data Transformation</a></li>
+                <li><a href="error_handling.html">Error Handling and Validation</a></li>
+                <li><a href="performance_considerations.html">Performance Considerations</a></li>
+                <li><a href="integration.html">Integration with Other Libraries</a></li>
+                <li><a href="practical_examples.html">Practical Examples and Use Cases</a></li>
+                <li><a href="best_practices.html">Best Practices</a></li>
+
+            </ul>
+        </div>
+
+        <div class="content-container">        
+            <section id="introduction">
+                <h2>Introduction to Groovy for File Handling</h2>
+                <p>Overview of Groovy's capabilities for file manipulation.</p>
+            </section>
+
+            <section id="xlsx">
+                <h2>Working with XLSX Files</h2>
+                <p>To work with XLSX files in Groovy using Apache POI, you can utilize the library to read, write, and manipulate Excel spreadsheets. Key tasks include creating new Excel files, reading data from existing files, formatting cells, and applying styles. For detailed examples and best practices, consider exploring resources that cover Apache POI's capabilities in depth.</p>
+                
+                <p>Apache POI is a powerful Java library that allows you to read and write Microsoft Excel files, including the newer .xlsx format. Below are the key operations you can perform when working with XLSX files in Groovy.</p>
+
+                <h3>1. Using Apache POI to Read and Write Excel (.xlsx) Files</h3>
+                <p>Reading Excel Files: You can read data from existing Excel files using the <code>XSSFWorkbook</code> class. This allows you to access sheets, rows, and cells to extract the required information.</p>
+                <p>Writing Excel Files: To create or modify Excel files, you can instantiate <code>XSSFWorkbook</code>, create sheets, and populate them with data.</p>
+
+                <h3>2. Creating Excel Spreadsheets with Groovy</h3>
+                <p>You can create a new Excel spreadsheet by initializing a <code>XSSFWorkbook</code> object and adding sheets using the <code>createSheet</code> method. Populate the sheets with data by creating rows and cells, and setting values using the <code>setCellValue</code> method.</p>
+
+                <h3>3. Reading Data from Existing Excel Files</h3>
+                <p>Use <code>FileInputStream</code> to load an existing Excel file. Access the desired sheet using <code>getSheetAt</code> and iterate through rows and cells to read data. Handle different cell types (numeric, string, formula) appropriately to extract values.</p>
+
+                <h3>4. Formatting Cells and Applying Styles in Excel</h3>
+                <p>Apache POI allows you to format cells by creating <code>CellStyle</code> objects. You can set properties such as font, color, and borders. Apply styles to cells or ranges of cells to enhance the visual presentation of your data.</p>
+
+                <h3>5. Writing Formulas in Excel Using Groovy</h3>
+                <p>You can write formulas directly into cells using the <code>setCellFormula</code> method. Formulas can perform calculations based on other cell values. After writing formulas, you can evaluate them using the <code>FormulaEvaluator</code> class to get the computed results.</p>
+
+                <h3>Example Code Snippets</h3>
+
+                <h4>Creating an Excel File</h4>
+                <section id="copy-box">
+                    <div id="content-box" style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; position: relative;">
+                        <button onclick="copyToClipboard()" style="background: none; border: none; cursor: pointer; position: absolute; top: 10px; right: 10px;">
+                            <img src="Copy1.png" alt="Copy" style="width: 20px; height: 20px;">
+                        </button>
+                        <pre><code>
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.ss.usermodel.*
+
+def workbook = new XSSFWorkbook()
+def sheet = workbook.createSheet("Sample Data")
+
+def row = sheet.createRow(0)
+row.createCell(0).setCellValue("Name")
+row.createCell(1).setCellValue("Age")
+
+def dataRow = sheet.createRow(1)
+dataRow.createCell(0).setCellValue("John Doe")
+dataRow.createCell(1).setCellValue(30)
+
+def fileOut = new FileOutputStream("sample.xlsx")
+workbook.write(fileOut)
+fileOut.close()
+workbook.close()
+</code></pre>
+                    </div>
+                </section>
+
+                <h4>Reading an Excel File</h4>
+                <section id="copy-box">
+                    <div id="content-box" style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; position: relative;">
+                        <button onclick="copyToClipboard()" style="background: none; border: none; cursor: pointer; position: absolute; top: 10px; right: 10px;">
+                            <img src="Copy1.png" alt="Copy" style="width: 20px; height: 20px;">
+                        </button>
+                <pre><code>
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.ss.usermodel.*
+
+def file = new FileInputStream("sample.xlsx")
+def workbook = new XSSFWorkbook(file)
+def sheet = workbook.getSheetAt(0)
+
+sheet.each { Row row ->
+    row.each { Cell cell ->
+        switch (cell.getCellType()) {
+            case CellType.STRING:
+                println cell.getStringCellValue()
+                break
+            case CellType.NUMERIC:
+                println cell.getNumericCellValue()
+                break
+        }
+    }
+}
+file.close()
+</code></pre>
+</div>
+</section>
+
+                <h4>Formatting Cells</h4>
+                <section id="copy-box">
+                    <div id="content-box" style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; position: relative;">
+                        <button onclick="copyToClipboard()" style="background: none; border: none; cursor: pointer; position: absolute; top: 10px; right: 10px;">
+                            <img src="Copy1.png" alt="Copy" style="width: 20px; height: 20px;">
+                        </button>
+
+                <pre><code>
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.ss.usermodel.*
+
+def workbook = new XSSFWorkbook()
+def sheet = workbook.createSheet("Formatted Data")
+
+def cellStyle = workbook.createCellStyle()
+cellStyle.setFillForegroundColor(IndexedColors.YELLOW.index)
+cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND)
+
+def row = sheet.createRow(0)
+def cell = row.createCell(0)
+cell.setCellValue("Highlighted Cell")
+cell.setCellStyle(cellStyle)
+
+def fileOut = new FileOutputStream("formatted.xlsx")
+workbook.write(fileOut)
+fileOut.close()
+workbook.close()
+</code></pre>
+</div>
+</section>
+                <h3>Conclusion</h3>
+                <p>Working with XLSX files in Groovy using Apache POI is straightforward and powerful. You can create, read, format, and manipulate Excel files effectively, making it an excellent choice for applications that require Excel integration. For more advanced features, consider exploring the extensive documentation provided by Apache POI.</p>
+            </section>
+
+            <section id="csv">
+                <h2>Handling CSV Files</h2>
+                <ul>
+                    <li>Reading CSV files using Groovy's built-in capabilities.</li>
+                    <li>Writing data to CSV files.</li>
+                    <li>Parsing CSV data with different delimiters.</li>
+                    <li>Handling special characters and escaping in CSV.</li>
+                    <li>Using libraries like OpenCSV for advanced CSV handling.</li>
+                </ul>
+            </section>
+
+            <section id="xml">
+                <h2>Processing XML Files</h2>
+                <ul>
+                    <li>Reading XML files using Groovy's XmlSlurper and XmlParser.</li>
+                    <li>Writing XML data with Groovy's MarkupBuilder.</li>
+                    <li>Modifying existing XML documents.</li>
+                    <li>Validating XML against a schema (XSD).</li>
+                    <li>Converting XML to other formats (e.g., JSON).</li>
+                </ul>
+            </section>
+
+            <section id="data-transformation">
+                <h2>Data Transformation</h2>
+                <ul>
+                    <li>Converting data between CSV, XML, and XLSX formats.</li>
+                    <li>Using Groovy's data structures (lists, maps) for data manipulation.</li>
+                </ul>
+            </section>
+
+            <section id="error-handling">
+                <h2>Error Handling and Validation</h2>
+                <ul>
+                    <li>Implementing error handling for file operations.</li>
+                    <li>Validating data read from files before processing.</li>
+                </ul>
+            </section>
+
+            <section id="performance">
+                <h2>Performance Considerations</h2>
+                <ul>
+                    <li>Optimizing file reading and writing for large datasets.</li>
+                    <li>Memory management when processing large files.</li>
+                </ul>
+            </section>
+
+            <section id="integration">
+                <h2>Integration with Other Libraries</h2>
+                <ul>
+                    <li>Using Groovy with libraries like Apache Commons CSV and Jackson for JSON.</li>
+                    <li>Integrating with databases for data import/export.</li>
+                </ul>
+            </section>
+
+            <section id="practical-examples">
+                <h2>Practical Examples and Use Cases</h2>
+                <ul>
+                    <li>Real-world examples of file handling in Groovy.</li>
+                    <li>Use cases for data migration and reporting.</li>
+                </ul>
+            </section>
+
+            <section id="best-practices">
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Coding standards for file handling in Groovy.</li>
+                    <li>Tips for maintaining code readability and efficiency.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Learn Groovy. All rights reserved.</p>
+    </footer>
+</body>

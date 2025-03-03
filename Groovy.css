@@ -1,0 +1,208 @@
+/* Default styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: #ffffff;
+    color: #003366;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+nav ul li:hover {
+    transform: translateY(-3px);
+}
+
+nav ul li a {
+    color: #003366;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #E0F7FA;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #003366;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #E8F5E9;
+}
+
+nav ul li:hover .dropdown-content,
+nav ul li:focus-within .dropdown-content {
+    display: block;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #4CAF50;
+}
+
+.content-container {
+    flex: 1;
+    padding: 0 20px;
+    height: calc(100vh - 200px);
+    /* Adjust based on header/footer height */
+    overflow-y: auto;
+}
+
+.tutorial {
+    background: #ffffff;
+    margin: 20px;
+    padding: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tutorial:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background: #ffffff;
+    color: #003366;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#content-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    position: relative;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #121212;
+    /* Dark background */
+    color: #ffffff;
+    /* Light text color */
+}
+
+.dark-mode header {
+    background: #1e1e1e;
+    /* Dark header */
+    color: white;
+    /* Light text color */
+}
+
+.dark-mode nav ul li a {
+    color: #ffffff;
+    /* Link color in dark mode */
+}
+
+.dark-mode nav ul li a:hover {
+    background: #333333;
+    /* Darker background on hover */
+}
+
+.dark-mode footer {
+    background: #1e1e1e;
+    /* Dark footer */
+    color: white;
+    /* Light text color */
+}
+
+.dark-mode .tutorial {
+    background: #1e1e1e;
+    /* Dark background for tutorials */
+    color: white;
+    /* Light text color for tutorials */
+}
+
+.dark-mode .tutorial:hover {
+    background: #333333;
+    /* Darker background on hover for tutorials */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    /* Light shadow for contrast */
+}
+
+/* Additional styles for the dropdown and tutorials can be added here */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+    }
+}

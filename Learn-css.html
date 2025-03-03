@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML - Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to toggle dropdown visibility
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown-content');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Learn HTML</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#courses" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown()">Courses</a>
+                    <div class="dropdown-content">
+                        <a href="Learn_Groovy.html">Groovy</a>
+                        <a href="learn-css.html">CSS</a>
+                        <a href="learn-javascript.html">JavaScript</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Getting Started with HTML</h2>
+            <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a webpage using markup.</p>
+            <h3>Basic HTML Structure</h3>
+            <pre>
+<code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Webpage</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is my first webpage.</p>
+</body>
+</html>
+</code>
+            </pre>
+            <h3>Key HTML Elements</h3>
+            <ul>
+                <li><strong>&lt;h1&gt; to &lt;h6&gt;:</strong> Headings</li>
+                <li><strong>&lt;p&gt;:</strong> Paragraphs</li>
+                <li><strong>&lt;a&gt;:</strong> Links</li>
+                <li><strong>&lt;img&gt;:</strong> Images</li>
+                <li><strong>&lt;div&gt;:</strong> Division or section</li>
+            </ul>
+            <h3>Resources</h3>
+            <p>For more information, check out the following resources:</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/html/">W3Schools HTML Tutorial</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs - HTML</a></li>
+            </ul>

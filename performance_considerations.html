@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Considerations</title>
+    <link rel="stylesheet" href="Groovy.css">
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Performance Considerations</h1>
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()" style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none; cursor: pointer; color: inherit;">Toggle Dark Mode</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#courses" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown()">Courses</a>
+                    <div class="dropdown-content">
+                        <a href="Learn_Groovy.html">Groovy</a>
+                        <a href="learn-css.html">CSS</a>
+                        <a href="learn-javascript.html">JavaScript</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Content for performance considerations goes here.</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Learn Groovy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
